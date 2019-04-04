@@ -9,4 +9,7 @@ class User{
     this._username = obj['username'];
     this._password = obj['password'];
   }
+
+  String get username => _username;
+  String get password => _password;
 }
