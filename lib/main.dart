@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food/Menu/homePage.dart';
+import 'package:food/credenTials/signIn.dart';
 
-void main()=>runApp(MyApp());
-
-final routes = {
-  '/login' : (BuildContext context) => LoginPage();
-  '/home' : (BuildContext context) => HomePage();
-  '/' : (BuildContext context) => LoginPage();
-};
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SqFlite',
-      routes: routes,
-    );
-  }
-}
+void main() => runApp(
+  MaterialApp(home: SignIn(),debugShowCheckedModeBanner: false,)
+);
