@@ -1,4 +1,4 @@
-# food
+# indian_heritage
 
 A new Flutter project.
 
