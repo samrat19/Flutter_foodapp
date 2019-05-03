@@ -535,6 +535,7 @@ class _NonVegState extends State<NonVeg> {
     "asset/mutton-biryani.jpg",
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

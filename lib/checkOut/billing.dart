@@ -30,8 +30,8 @@ class _BillingState extends State<Billing> {
     "Chicken Sandwich",
     "Chicken Chowmin",
     "Chili Chicken (8 Pcs)",
-    "Chicken Fried Rice"
-    "Egg Curry(2 Pcs.)"
+    "Chicken Fried Rice",
+    "Egg Curry(2 Pcs.)",
     "Mixed Fried Rice",
     "Chicken Bhorta",
     "Tandoori Chicken (4 Pcs)",
@@ -74,65 +74,64 @@ class _BillingState extends State<Billing> {
           ),
         ],
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Image.asset("asset/food.jpg",fit: BoxFit.cover,),
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: <Widget>[
-                Divider(height: 30.0),
-                Container(
-                  height: 300.0,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(20.0),
-                    itemCount: menu.length,
-                    itemBuilder: (_, i) {
-                      return Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            menu[i],
-                            style:
-                                TextStyle(
-                                  color: Colors.brown,
-                                  fontSize: 25.0),
-                          ));
-                    },
-                  ),
-                ),
-                Divider(
-                  height: 30.0,
-                ),
-                GestureDetector(
-                  child: Container(
-                    height: 80.0,
-
-                    width: 350.0,
-
-                    padding: EdgeInsets.all(20.0),
-
-                    color: Colors.brown,
-
-                    child: Text(
-                      "Procced With Cash On Delivery",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0,
-                       color: Colors.white),
-                    ),
-                  ),
-                  onTap: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_)=>Reciever())
-                    );
-                  },
-                )
-              ],
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("asset/food.jpg"),fit: BoxFit.cover
+          )
+        ),
+        child: Column(
+          children: <Widget>[
+            Divider(height: 80.0),
+            Container(
+              height: 300.0,
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.all(20.0),
+                itemCount: menu.length,
+                itemBuilder: (_, i) {
+                  return Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text(
+                        menu[i],
+                        style:
+                            TextStyle(
+                              color: Colors.brown,
+                              fontSize: 25.0),
+                      ));
+                },
+              ),
             ),
-          ),
-        ],
+            Divider(
+              height: 30.0,
+            ),
+            GestureDetector(
+              child: Container(
+                height: 80.0,
+
+                width: 350.0,
+
+                padding: EdgeInsets.all(20.0),
+
+                color: Colors.brown,
+
+                child: Text(
+                  "Procced With Cash On Delivery",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20.0,
+                   color: Colors.white),
+                ),
+              ),
+              onTap: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_)=>Reciever())
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }
