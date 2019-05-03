@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
-import 'package:indian_heritage/homepage.dart';
+import 'package:food/splashScreen.dart';
 
-void main()=>runApp(
-  MaterialApp(
-    home: SplashScreenApp(),
-    debugShowCheckedModeBanner: false,
-  )
+void main() => runApp(
+  MaterialApp(home: Splash_Screen(),
+  debugShowCheckedModeBanner: false,)
 );
-
-class SplashScreenApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 5,
-      navigateAfterSeconds: HomePage(),
-    );
-  }
-}
