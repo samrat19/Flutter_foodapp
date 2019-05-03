@@ -19,9 +19,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite: ^1.1.0
-  path_provider: "^0.5.0+1"
-  intl: ^0.15.8
   splashscreen:
 
   # The following adds the Cupertino Icons font to your application.
@@ -33,7 +30,6 @@ dependencies:
   firebase_storage: 1.0.4
   google_sign_in: 3.2.4
   material_design_icons_flutter:
-  flutter_webview_plugin: ^0.3.4
 
 dev_dependencies:
   url_launcher:

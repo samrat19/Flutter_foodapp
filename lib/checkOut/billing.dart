@@ -64,7 +64,7 @@ class _BillingState extends State<Billing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.brown,
         actions: <Widget>[
           Center(
             child: Text(
@@ -77,20 +77,13 @@ class _BillingState extends State<Billing> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Image.asset("asset/food.jpeg",fit: BoxFit.cover,),
+          Image.asset("asset/food.jpg",fit: BoxFit.cover,),
           Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: <Widget>[
-                Divider(height: 20.0),
-                Text(
-                  "Your Food List",
-                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 40.0),
-                ),
-                Divider(
-                  height: 60.0,
-                ),
+                Divider(height: 30.0),
                 Container(
                   height: 300.0,
                   child: ListView.builder(
@@ -103,7 +96,9 @@ class _BillingState extends State<Billing> {
                           child: Text(
                             menu[i],
                             style:
-                                TextStyle(color: Colors.blue[100],fontSize: 25.0),
+                                TextStyle(
+                                  color: Colors.brown,
+                                  fontSize: 25.0),
                           ));
                     },
                   ),
@@ -119,12 +114,13 @@ class _BillingState extends State<Billing> {
 
                     padding: EdgeInsets.all(20.0),
 
-                    color: Colors.red,
+                    color: Colors.brown,
 
                     child: Text(
                       "Procced With Cash On Delivery",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      style: TextStyle(fontSize: 20.0,
+                       color: Colors.white),
                     ),
                   ),
                   onTap: (){

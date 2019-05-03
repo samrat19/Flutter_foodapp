@@ -14,6 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   Auth auth = Auth();
   String _email, _password;
 
@@ -36,6 +37,9 @@ class _LoginPageState extends State<LoginPage> {
       print(user.email);
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+    }).catchError((e) {
+      scaffoldKey.currentState
+          .showSnackBar(SnackBar(content: Text("Incorrect Credentials , Login failed")));
     });
   }
 
@@ -44,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: scaffoldKey,
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

@@ -13,7 +13,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
     return SplashScreen(
       seconds: 5,
       loaderColor: Colors.white,
-      title: Text("\n\nWelcome to Foodie", 
+      title: Text("\n\nFoodie", 
         style: TextStyle(
           color: Colors.white,
           fontSize: 45.0,
