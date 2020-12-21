@@ -15,7 +15,7 @@ class DisplayScreen extends StatefulWidget {
 
 class _DisplayScreenState extends State<DisplayScreen> {
 
-  var scrollController;
+  ScrollController scrollController;
 
   bool isVeg = true;
 
@@ -26,6 +26,8 @@ class _DisplayScreenState extends State<DisplayScreen> {
     scrollController = ScrollController(initialScrollOffset: 0.0);
     super.initState();
   }
+
+  bool scrolling = false;
 
 
   List<FoodItemModel> foodItems = [
@@ -128,18 +130,26 @@ class _DisplayScreenState extends State<DisplayScreen> {
                     /*here goes the item list*/
                     Expanded(
                       flex: 1,
-                      child: ListView.builder(
-                        controller: scrollController,
-                        padding: EdgeInsets.all(0.0),
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (_,int index){
-                          return DisplayFoodItem(foodItem: foodItems[index]);
+                      child: NotificationListener(
+                        child: ListView(
+                          controller: scrollController,
+                          padding: EdgeInsets.all(0.0),
+                          physics: BouncingScrollPhysics(),
+                          children: foodItems.map((foodItem) => DisplayFoodItem(foodItem: foodItem)).toList(),
+                        ),
+                        onNotification: (ScrollNotification event){
+                          setState(() {
+                            scrolling = scrollController.position.activity.isScrolling;
+                          });
+                          return scrolling;
                         },
                       ),
                     ),
-                    Visibility(
-                      visible: scrollListener(),
-                      child: Center(
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 700),
+                        opacity: scrolling ? 0.0 : 1.0,
                         child: Icon(Icons.keyboard_arrow_up_sharp,color: Colors.grey[200],
                         size: 60.0,),
                       ),
@@ -152,17 +162,6 @@ class _DisplayScreenState extends State<DisplayScreen> {
         ),
       ),
     );
-  }
-
-  bool scrollListener() {
-    // if (scrollController.offset <= scrollController.position.minScrollExtent &&
-    //     scrollController.position.outOfRange) {
-    //   return true;
-    // }else{
-    //   return false;
-    // }
-    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-    return scrollController.position.activity.isScrolling? false: true;
   }
 
   Widget beverageType(){
