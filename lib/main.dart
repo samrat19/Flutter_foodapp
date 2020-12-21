@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(FoodApp());
@@ -55,42 +57,74 @@ class _DisplayScreenState extends State<DisplayScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100.0,
-            ),
-            /*here goes the genres*/
-            beverageType(),
-            /*here goes the item list*/
-           /* CarouselSlider(
-              items: foodItems.map((item) => itemDisplayWidget(
-                name: item.itemName,
-                imagePath: item.imagePath,
-                price: item.itemPrice),
-              ).toList(),
-              options: CarouselOptions(
-                  enableInfiniteScroll: false,
-                  initialPage: 0,
-                //  autoPlay: true,
-                 // pauseAutoPlayOnTouch: true,
-                  height:  400.0,
-                  enlargeCenterPage: true,
-                  viewportFraction: 0.6
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned(
+                bottom: MediaQuery.of(context).size.height*0.57,
+                  left: MediaQuery.of(context).size.width*0.4,
+                  child: YellowCircle(color: Colors.yellow[700],),
               ),
-            ),*/
-            Expanded(
-              flex: 1,
-              child: ListView(
-                children: foodItems.map((e) => itemDisplayWidget(
-                  price: e.itemPrice,
-                  imagePath: e.imagePath,
-                  name: e.itemName,
-                )).toList(),
+              Positioned(
+                top: MediaQuery.of(context).size.height*0.57,
+                right: MediaQuery.of(context).size.width*0.4,
+                child: YellowCircle(color:isVeg?Colors.green[800]:Colors.red),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(left:8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    Card(
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color:isVeg?Colors.green[800]:Colors.red),
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.menu,
+                          color:isVeg?Colors.green[800]:Colors.red,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text('give your tongue a \nlittle twist',style: GoogleFonts.sacramento(
+                      fontSize: 55.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      height: 1.0,
+                      wordSpacing: 7,
+                      letterSpacing: 3.0,
+                    ),),
+                    /*here goes the genres*/
+                    beverageType(),
+                    /*here goes the item list*/
+                    Expanded(
+                      flex: 1,
+                      child: ListView(
+                        children: foodItems.map((e) => itemDisplayWidget(
+                          price: e.itemPrice,
+                          imagePath: e.imagePath,
+                          name: e.itemName,
+                        )).toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -115,12 +149,13 @@ class _DisplayScreenState extends State<DisplayScreen> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 4.0,
+                vertical: 2.0,
                 horizontal: 18.0,
               ),
-              child: Text('veg',style: TextStyle(
+              child: Text('veg',style: GoogleFonts.sacramento(
                 color: isVeg?Colors.white:Colors.green[800],
-                fontSize: 30.0,
+                fontSize: 45.0,
+                height: 1.0,
               ),),
             ),
           ),
@@ -143,9 +178,10 @@ class _DisplayScreenState extends State<DisplayScreen> {
                 vertical: 4.0,
                 horizontal: 16.0,
               ),
-              child: Text('non veg',style: TextStyle(
+              child: Text('non veg',style: GoogleFonts.sacramento(
                 color: isVeg?Colors.redAccent:Colors.white,
-                fontSize: 30.0,
+                fontSize: 45.0,
+                height: 1.0,
               ),),
             ),
           ),
@@ -157,7 +193,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
   Widget itemDisplayWidget({String imagePath, String name, String price}){
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 10.0,
+        horizontal: 6.0,
         vertical: 6.0,
       ),
       child: Card(
@@ -198,58 +234,62 @@ class _DisplayScreenState extends State<DisplayScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(name,style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
+                      Text(name,style: GoogleFonts.sacramento(
+                        fontSize: 30.0,
+                        height: 1.0,
                       ),),
-                      Text('price: '+price,style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
-                      )),
+                      Container(
+                        width:MediaQuery.of(context).size.width-150,
+                        child: Row(
+                          children: [
+                            Text('price: '+price,style: GoogleFonts.sacramento(
+                              fontSize: 25.0,
+                              height: 1.0,
+                            )),
+                            Spacer(),
+                            Container(
+                              height: 20.0,
+                              width: 20.0,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 4.0,
+                            ),
+                            Text('1',style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,),
+                            ),
+                            SizedBox(
+                              width: 4.0,
+                            ),
+                            Container(
+                              height: 20.0,
+                              width: 20.0,
+                              decoration: BoxDecoration(
+                                color: Colors.green[800],
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Icon(
+                              Icons.add_shopping_cart_rounded,
+                              size: 20.0,
+                              color: Colors.blueGrey,
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ),
-              Spacer(
-                flex: 2,
-              ),
-              Container(
-                height: 20.0,
-                width: 20.0,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              SizedBox(
-                width: 4.0,
-              ),
-              Text('1',style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,),
-              ),
-              SizedBox(
-                width: 4.0,
-              ),
-              Container(
-                height: 20.0,
-                width: 20.0,
-                decoration: BoxDecoration(
-                  color: Colors.green[800],
-                  shape: BoxShape.circle,
-                ),
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              Icon(
-                Icons.add_shopping_cart_rounded,
-                size: 20.0,
-                color: Colors.blueGrey,
-              ),
-              SizedBox(
-                width: 10.0,
               ),
             ],
           ),
@@ -259,42 +299,17 @@ class _DisplayScreenState extends State<DisplayScreen> {
   }
 }
 
-//top: true,
-// child: Stack(
-//   fit: StackFit.expand,
-//   children: [
-//     Positioned(
-//       bottom: MediaQuery.of(context).size.height * 0.47,
-//       left: MediaQuery.of(context).size.width * 0.4,
-//       child: YellowCircle(),
-//     ),
-//     Padding(
-//       padding: const EdgeInsets.only(left: 10.0),
-//       child: Column(
-//         children: [
-//           DisplayScreenText(),
-//           SizedBox(
-//             height: MediaQuery.of(context).size.height*0.16,
-//           ),
-//           Container(
-//             height: MediaQuery.of(context).size.height*0.4,
-//             width: MediaQuery.of(context).size.width,
-//             color: Colors.red,
-//           ),
-//         ],
-//       ),
-//     ),
-//   ],
-// ),
-
 class YellowCircle extends StatelessWidget {
+  final Color color;
+
+  const YellowCircle({Key key, @required this.color}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       width: MediaQuery.of(context).size.width * 0.8,
       decoration: BoxDecoration(
-        color: Colors.yellow[700],
+        color: color,
         shape: BoxShape.circle,
       ),
     );
