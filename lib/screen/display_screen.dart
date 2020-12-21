@@ -1,8 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:food/components/background_widget.dart';
 import 'package:food/components/caption_text.dart';
-import 'package:food/components/designed_circle.dart';
 import 'package:food/components/display_food_item.dart';
 import 'package:food/components/menu_button.dart';
 import 'package:food/logic/model/food_item_model.dart';
@@ -83,82 +82,73 @@ class _DisplayScreenState extends State<DisplayScreen> {
       key: scaffoldKey,
       drawer: Drawer(),
       body: Container(
-        color: Colors.white,
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned(
-                bottom: MediaQuery.of(context).size.height*0.57,
-                left: MediaQuery.of(context).size.width*0.4,
-                child: DesignedCircle(color: Colors.yellow[700],),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height*0.57,
-                right: MediaQuery.of(context).size.width*0.4,
-                child: DesignedCircle(color:isVeg?Colors.green[800]:Colors.red),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 50.0,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            BackgroundWidget(
+              topCircleColor: Colors.yellow[700],
+              bottomCircleColor: isVeg?Colors.green[800]:Colors.red,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 50.0,
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      scaffoldKey.currentState.openDrawer();
+                      log('tapped');
+                    },
+                    child: MenuButton(
+                      color: isVeg?Colors.green[800]:Colors.red,
                     ),
-                    GestureDetector(
-                      onTap: (){
-                        scaffoldKey.currentState.openDrawer();
-                        log('tapped');
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  CaptionText(),
+                  /*here goes the genres*/
+                  beverageType(),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  /*here goes the item list*/
+                  Expanded(
+                    flex: 1,
+                    child: NotificationListener(
+                      child: ListView(
+                        controller: scrollController,
+                        padding: EdgeInsets.all(0.0),
+                        physics: BouncingScrollPhysics(),
+                        children: foodItems.map((foodItem) => DisplayFoodItem(foodItem: foodItem)).toList(),
+                      ),
+                      onNotification: (ScrollNotification event){
+                        setState(() {
+                          scrolling = scrollController.position.activity.isScrolling;
+                        });
+                        return scrolling;
                       },
-                      child: MenuButton(
-                        color: isVeg?Colors.green[800]:Colors.red,
-                      ),
                     ),
-                    SizedBox(
-                      height: 20.0,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: AnimatedOpacity(
+                      duration: Duration(milliseconds: 700),
+                      opacity: scrolling ? 0.0 : 1.0,
+                      child: Icon(Icons.keyboard_arrow_up_sharp,color: Colors.grey[200],
+                      size: 60.0,),
                     ),
-                    CaptionText(),
-                    /*here goes the genres*/
-                    beverageType(),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    /*here goes the item list*/
-                    Expanded(
-                      flex: 1,
-                      child: NotificationListener(
-                        child: ListView(
-                          controller: scrollController,
-                          padding: EdgeInsets.all(0.0),
-                          physics: BouncingScrollPhysics(),
-                          children: foodItems.map((foodItem) => DisplayFoodItem(foodItem: foodItem)).toList(),
-                        ),
-                        onNotification: (ScrollNotification event){
-                          setState(() {
-                            scrolling = scrollController.position.activity.isScrolling;
-                          });
-                          return scrolling;
-                        },
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: AnimatedOpacity(
-                        duration: Duration(milliseconds: 700),
-                        opacity: scrolling ? 0.0 : 1.0,
-                        child: Icon(Icons.keyboard_arrow_up_sharp,color: Colors.grey[200],
-                        size: 60.0,),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
