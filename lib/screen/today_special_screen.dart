@@ -4,15 +4,17 @@ import 'package:food/components/background_widget.dart';
 import 'package:food/components/caption_text.dart';
 import 'package:food/components/display_food_item.dart';
 import 'package:food/components/menu_button.dart';
-import 'package:food/logic/model/food_item_model.dart';
+import 'package:food/screen/all_items_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DisplayScreen extends StatefulWidget {
+import '../test_elements.dart';
+
+class TodaySpecialScreen extends StatefulWidget {
   @override
-  _DisplayScreenState createState() => _DisplayScreenState();
+  _TodaySpecialScreenState createState() => _TodaySpecialScreenState();
 }
 
-class _DisplayScreenState extends State<DisplayScreen> {
+class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
 
   ScrollController scrollController;
 
@@ -27,54 +29,6 @@ class _DisplayScreenState extends State<DisplayScreen> {
   }
 
   bool scrolling = false;
-
-
-  List<FoodItemModel> foodItems = [
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-    FoodItemModel(
-      imagePath: 'asset/chicken-chowmein.jpg',
-      itemName: 'Chicken Chowmein',
-      itemPrice: '180/-',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -141,8 +95,11 @@ class _DisplayScreenState extends State<DisplayScreen> {
                     child: AnimatedOpacity(
                       duration: Duration(milliseconds: 700),
                       opacity: scrolling ? 0.0 : 1.0,
-                      child: Icon(Icons.keyboard_arrow_up_sharp,color: Colors.grey[200],
-                      size: 60.0,),
+                      child: GestureDetector(
+                        onTap: displayAllFood,
+                        child: Icon(Icons.keyboard_arrow_up_sharp,color: Colors.grey[200],
+                        size: 60.0,),
+                      ),
                     ),
                   )
                 ],
@@ -211,6 +168,20 @@ class _DisplayScreenState extends State<DisplayScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  displayAllFood(){
+    showModalBottomSheet<dynamic>(
+        backgroundColor: Colors.transparent,
+        barrierColor: Colors.transparent,
+        isScrollControlled: true,
+        elevation: 0.0,
+        context: context,
+        builder: (context){
+          double height = MediaQuery.of(context).size.height;
+          return AllItemsScreen(isVeg: isVeg,height: height,);
+        }
     );
   }
 }
