@@ -143,7 +143,6 @@ class _FoodItemTicketState extends State<FoodItemTicket> {
                   onTap: (){
                     setState(() {
                       quantity = quantity+1;
-                      print(quantity.toString());
                     });
                   },
                   child: Container(

@@ -12,7 +12,7 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Demo(),
+      home: TodaySpecialScreen(),
     );
   }
 }
