@@ -6,17 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'food_details_widget.dart';
 
-class DisplayFoodItem extends StatefulWidget {
+class DisplayFoodItemWidget extends StatefulWidget {
 
   final FoodItemModel foodItem;
 
-  const DisplayFoodItem({Key key, @required this.foodItem}) : super(key: key);
+  const DisplayFoodItemWidget({Key key, @required this.foodItem}) : super(key: key);
 
   @override
-  _DisplayFoodItemState createState() => _DisplayFoodItemState();
+  _DisplayFoodItemWidgetState createState() => _DisplayFoodItemWidgetState();
 }
 
-class _DisplayFoodItemState extends State<DisplayFoodItem> {
+class _DisplayFoodItemWidgetState extends State<DisplayFoodItemWidget> {
 
   int quantity;
   bool isCarted;

@@ -5,8 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../test_elements.dart';
-import 'display_food_item.dart';
-import 'food_details_widget.dart';
+import '../utils/food_details_widget.dart';
 
 class DisplayAllFoodItem extends StatelessWidget {
 

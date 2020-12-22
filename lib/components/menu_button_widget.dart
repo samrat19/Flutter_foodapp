@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MenuButton extends StatelessWidget {
+class MenuButtonWidget extends StatelessWidget {
 
   final Color color;
 
-  const MenuButton({Key key, @required this.color}) : super(key: key);
+  const MenuButtonWidget({Key key, @required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

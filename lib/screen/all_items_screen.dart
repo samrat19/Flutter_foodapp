@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food/components/background_widget.dart';
+import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/background_widget.dart';
 import 'package:food/components/display_all_food_item.dart';
-import 'package:food/components/visible_check_out_option.dart';
+import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/visible_check_out_widget.dart';
 import 'package:food/test_elements.dart';
 import 'package:provider/provider.dart';
 
@@ -56,7 +56,7 @@ class AllItemsScreen extends StatelessWidget {
               ),
               Visibility(
                 visible: appController.cart == 0 ? false:true,
-                child: VisibleCheckoutOption(),
+                child: VisibleCheckoutWidget(),
               ),
             ],
           ),

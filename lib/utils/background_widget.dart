@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'designed_circle.dart';
+import 'designed_circle_widget.dart';
 
 class BackgroundWidget extends StatelessWidget {
 
@@ -17,12 +17,12 @@ class BackgroundWidget extends StatelessWidget {
         Positioned(
           bottom: MediaQuery.of(context).size.height*0.57,
           left: MediaQuery.of(context).size.width*0.4,
-          child: DesignedCircle(color: topCircleColor,),
+          child: DesignedCircleWidget(color: topCircleColor,),
         ),
         Positioned(
           top: MediaQuery.of(context).size.height*0.57,
           right: MediaQuery.of(context).size.width*0.4,
-          child: DesignedCircle(color:bottomCircleColor),
+          child: DesignedCircleWidget(color:bottomCircleColor),
         ),
       ],
     );
