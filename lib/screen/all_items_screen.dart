@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/background_widget.dart';
 import 'package:food/components/display_all_food_item.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/visible_check_out_widget.dart';
 import 'package:food/test_elements.dart';
+import 'package:food/utils/background_widget.dart';
+import 'package:food/utils/visible_check_out_widget.dart';
 import 'package:provider/provider.dart';
 
 class AllItemsScreen extends StatelessWidget {

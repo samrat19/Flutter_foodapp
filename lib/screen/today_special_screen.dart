@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/background_widget.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/caption_text_widget.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/display_food_item_widget.dart';
 import 'package:food/components/menu_button_widget.dart';
-import 'file:///D:/My_Programs/Android_Learning/Flutter_foodapp/lib/utils/visible_check_out_widget.dart';
 import 'package:food/screen/all_items_screen.dart';
+import 'package:food/utils/background_widget.dart';
+import 'package:food/utils/caption_text_widget.dart';
+import 'package:food/utils/display_food_item_widget.dart';
+import 'package:food/utils/visible_check_out_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +39,49 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
 
     return Scaffold(
       key: scaffoldKey,
-      drawer: Drawer(),
+      drawerScrimColor: Colors.white,
+      endDrawer: Stack(
+      //  color: Colors.black.withOpacity(0.5),
+        children: [
+          BackgroundWidget(
+            topCircleColor: Colors.yellow[700],
+            bottomCircleColor: Colors.grey[300],
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ...drawerItems.map((item) => DrawerElementWidget(element: item),).toList(),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 40.0,
+            left: 10.0,
+            child: GestureDetector(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Container(
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                        Icons.arrow_back_ios_rounded,
+                        size: 30.0,
+                        color: Colors.grey[700],
+                      ),
+                    Text('Back',style: GoogleFonts.sacramento(fontSize: 30.0,height: 2),)
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -61,7 +103,7 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      scaffoldKey.currentState.openDrawer();
+                      scaffoldKey.currentState.openEndDrawer();
                     },
                     child: MenuButtonWidget(
                       color: isVeg?Colors.green[800]:Colors.red,
@@ -202,3 +244,38 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
     );
   }
 }
+
+class DrawerElementWidget extends StatelessWidget {
+
+  final DrawerElementModel element;
+
+  const DrawerElementWidget({Key key, @required this.element}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Text(element.name, style: GoogleFonts.sacramento(
+        fontSize: 50.0,
+        height: 1,
+        color: element.color,
+      ),),
+    );
+  }
+}
+
+class DrawerElementModel{
+  final String name;
+  final Color color;
+
+  const DrawerElementModel({@required this.name, @required this.color});
+}
+
+List<DrawerElementModel> drawerItems = [
+  DrawerElementModel(name: 'Account',color: Colors.red[400]),
+  DrawerElementModel(name: 'Cart Items',color: Colors.green[400]),
+  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[400]),
+  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400]),
+  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[400]),
+  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400]),
+];
