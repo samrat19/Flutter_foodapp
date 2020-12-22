@@ -4,8 +4,10 @@ import 'package:food/components/background_widget.dart';
 import 'package:food/components/caption_text.dart';
 import 'package:food/components/display_food_item.dart';
 import 'package:food/components/menu_button.dart';
+import 'package:food/components/visible_check_out_option.dart';
 import 'package:food/screen/all_items_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../test_elements.dart';
 
@@ -32,6 +34,9 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final appController = Provider.of<AppController>(context);
+
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(),
@@ -111,6 +116,10 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                   )
                 ],
               ),
+            ),
+            Visibility(
+              visible: appController.cart == 0 ? false:true,
+              child: VisibleCheckoutOption(),
             ),
           ],
         ),

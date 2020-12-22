@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:food/logic/model/food_item_model.dart';
 import 'package:food/logic/model/food_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../test_elements.dart';
 import 'display_food_item.dart';
 import 'food_details_widget.dart';
 
@@ -74,6 +76,7 @@ class _FoodItemTicketState extends State<FoodItemTicket> {
 
   @override
   Widget build(BuildContext context) {
+    final appController = Provider.of<AppController>(context);
     return Card(
       elevation: 20.0,
       shape: RoundedRectangleBorder(
@@ -179,8 +182,10 @@ class _FoodItemTicketState extends State<FoodItemTicket> {
                   setState(() {
                     if(isCarted == false){
                       isCarted = true;
+                      appController.addToCart();
                     }else{
                       isCarted = false;
+                      appController.removeFromCart();
                     }
                   });
                 },

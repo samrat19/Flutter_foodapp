@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food/components/background_widget.dart';
 import 'package:food/components/display_all_food_item.dart';
+import 'package:food/components/visible_check_out_option.dart';
 import 'package:food/test_elements.dart';
+import 'package:provider/provider.dart';
 
 class AllItemsScreen extends StatelessWidget {
   final double height;
@@ -13,6 +15,7 @@ class AllItemsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appController = Provider.of<AppController>(context);
     return Material(
       child: Container(
         height: height,
@@ -29,9 +32,14 @@ class AllItemsScreen extends StatelessWidget {
                 height: height,
                 width: MediaQuery.of(context).size.width,
                 child: ListView(
-                  children: allItems
-                      .map((item) => DisplayAllFoodItem(foodItem: item)
-                  ).toList(),
+                  children: [
+                    ...allItems
+                        .map((item) => DisplayAllFoodItem(foodItem: item)
+                    ).toList(),
+                    SizedBox(
+                      height: 60.0,
+                    ),
+                  ]
                 ),
               ),
               Positioned(
@@ -45,6 +53,10 @@ class AllItemsScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
+              ),
+              Visibility(
+                visible: appController.cart == 0 ? false:true,
+                child: VisibleCheckoutOption(),
               ),
             ],
           ),

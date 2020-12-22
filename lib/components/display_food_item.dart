@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food/logic/model/food_item_model.dart';
+import 'package:food/test_elements.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'food_details_widget.dart';
 
 class DisplayFoodItem extends StatefulWidget {
@@ -27,6 +29,7 @@ class _DisplayFoodItemState extends State<DisplayFoodItem> {
 
   @override
   Widget build(BuildContext context) {
+    final appController = Provider.of<AppController>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 6.0,
@@ -144,8 +147,10 @@ class _DisplayFoodItemState extends State<DisplayFoodItem> {
                                 setState(() {
                                   if(isCarted == false){
                                     isCarted = true;
+                                    appController.addToCart();
                                   }else{
                                     isCarted = false;
+                                    appController.removeFromCart();
                                   }
                                 });
                               },
