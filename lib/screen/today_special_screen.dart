@@ -69,8 +69,15 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                   CaptionText(),
                   /*here goes the genres*/
                   beverageType(),
+                  SizedBox(height: 20.0,),
+                  Text('Today\'s Special :',style: GoogleFonts.sacramento(
+                    height: 1.0,
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                    color: isVeg?Colors.teal:Colors.redAccent,
+                  ),),
                   SizedBox(
-                    height: 30.0,
+                    height: 15.0,
                   ),
                   /*here goes the item list*/
                   Expanded(
@@ -78,7 +85,7 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                     child: NotificationListener(
                       child: ListView(
                         controller: scrollController,
-                        padding: EdgeInsets.all(0.0),
+                        padding: EdgeInsets.only(top:0.0),
                         physics: BouncingScrollPhysics(),
                         children: foodItems.map((foodItem) => DisplayFoodItem(foodItem: foodItem)).toList(),
                       ),
