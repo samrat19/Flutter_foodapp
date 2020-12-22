@@ -7,6 +7,7 @@ class FoodItemModel{
   final String itemPrice;
   final int quantity;
   final bool isCarted;
+  final String foodDetails;
 
   const FoodItemModel({
     @required this.id,
@@ -15,5 +16,6 @@ class FoodItemModel{
     @required this.itemPrice,
     @required this.quantity,
     @required this.isCarted,
+    @required this.foodDetails,
   });
 }
