@@ -33,7 +33,19 @@ class AllItemsScreen extends StatelessWidget {
                       .map((item) => DisplayAllFoodItem(foodItem: item)
                   ).toList(),
                 ),
-              )
+              ),
+              Positioned(
+                top: 10.0,
+                left: 5.0,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back_ios_rounded,),
+                  iconSize: 30.0,
+                  color: Colors.grey[500],
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
             ],
           ),
         ),
