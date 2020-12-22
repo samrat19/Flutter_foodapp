@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food/components/background_widget.dart';
 import 'package:food/logic/model/food_item_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'food_details_widget.dart';
 
 class DisplayFoodItem extends StatefulWidget {
 
@@ -50,12 +50,7 @@ class _DisplayFoodItemState extends State<DisplayFoodItem> {
                   showDialog(
                     context: context,
                     builder: (_) => Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 100.0,
-                        top: 100.0,
-                        left: 30.0,
-                        right: 30.0,
-                      ),
+                      padding: const EdgeInsets.all(30.0),
                       child: FoodDetailsWidget(item: widget.foodItem),
                     )
                   );
@@ -177,54 +172,3 @@ class _DisplayFoodItemState extends State<DisplayFoodItem> {
     );
   }
 }
-
-class FoodDetailsWidget extends StatelessWidget {
-
-  final FoodItemModel item;
-
-  const FoodDetailsWidget({Key key, @required this.item}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: Stack(
-        children: [
-          BackgroundWidget(
-            topCircleColor: Colors.yellow[200],
-            bottomCircleColor: Colors.blue[200],),
-          SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(item.itemName,style: GoogleFonts.sacramento(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                    height: 1.0,
-                  ),),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Card(
-                      elevation: 20.0,
-                      shadowColor: Colors.blue[900],
-                      child: Image.asset(item.imagePath),
-                    ),
-                  ),
-                  Text(item.foodDetails,style: GoogleFonts.sacramento(
-                    fontSize: 35.0,
-                    height: 1.0,
-                  ),),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-

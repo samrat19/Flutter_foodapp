@@ -3,6 +3,9 @@ import 'package:food/logic/model/food_item_model.dart';
 import 'package:food/logic/model/food_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'display_food_item.dart';
+import 'food_details_widget.dart';
+
 class DisplayAllFoodItem extends StatelessWidget {
 
   final FoodModel foodItem;
@@ -86,16 +89,27 @@ class _FoodItemTicketState extends State<FoodItemTicket> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
               ),
-              child: Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        widget.foodItem.imagePath,
+              child: GestureDetector(
+                onTap: (){
+                  showDialog(
+                      context: context,
+                      builder: (_) => Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: FoodDetailsWidget(item: widget.foodItem),
                       )
+                  );
+                },
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          widget.foodItem.imagePath,
+                        )
+                    ),
                   ),
                 ),
               ),
