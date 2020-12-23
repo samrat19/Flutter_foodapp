@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:food/src/food_theme_data.dart';
 
 class VisibleCheckoutWidget extends StatelessWidget {
   @override
@@ -22,8 +22,7 @@ class VisibleCheckoutWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('Checkout',style:GoogleFonts.sacramento(
-                  height: 1.0,
+                Text('Checkout',style:FoodThemeData().foodItemTextStyle.copyWith(
                   fontSize: 40.0,
                   color: Colors.white,
                 ),),

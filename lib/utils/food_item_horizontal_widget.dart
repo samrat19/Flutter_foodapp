@@ -1,22 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food/logic/model/food_item_model.dart';
+import 'package:food/src/food_theme_data.dart';
 import 'package:food/test_elements.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'food_details_widget.dart';
 
-class DisplayFoodItemWidget extends StatefulWidget {
+class FoodItemHorizontalWidget extends StatefulWidget {
 
   final FoodItemModel foodItem;
 
-  const DisplayFoodItemWidget({Key key, @required this.foodItem}) : super(key: key);
+  const FoodItemHorizontalWidget({Key key, @required this.foodItem}) : super(key: key);
 
   @override
-  _DisplayFoodItemWidgetState createState() => _DisplayFoodItemWidgetState();
+  _FoodItemHorizontalWidgetState createState() => _FoodItemHorizontalWidgetState();
 }
 
-class _DisplayFoodItemWidgetState extends State<DisplayFoodItemWidget> {
+class _FoodItemHorizontalWidgetState extends State<FoodItemHorizontalWidget> {
 
   int quantity;
   bool isCarted;
@@ -84,18 +84,16 @@ class _DisplayFoodItemWidgetState extends State<DisplayFoodItemWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(widget.foodItem.itemName,style: GoogleFonts.sacramento(
+                      Text(widget.foodItem.itemName,style: FoodThemeData().foodItemTextStyle.copyWith(
                         fontSize: 30.0,
-                        height: 1.0,
                       ),),
                       Container(
                         width:MediaQuery.of(context).size.width-150,
                         child: Row(
                           children: [
-                            Text('price: '+widget.foodItem.itemPrice,style: GoogleFonts.sacramento(
+                            Text('price: '+widget.foodItem.itemPrice,style: FoodThemeData().foodItemTextStyle.copyWith(
                               fontSize: 25.0,
-                              height: 1.0,
-                            )),
+                            ),),
                             Spacer(),
                             GestureDetector(
                               onTap: (){

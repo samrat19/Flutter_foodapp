@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:food/src/food_theme_data.dart';
 
 class CaptionTextWidget extends StatelessWidget {
 
@@ -9,13 +9,8 @@ class CaptionTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,style: GoogleFonts.sacramento(
+    return Text(text,style: FoodThemeData().foodCaptionTextStyle.copyWith(
       fontSize: 55.0,
-      fontWeight: FontWeight.w500,
-      color: Colors.black,
-      height: 1.0,
-      wordSpacing: 7,
-      letterSpacing: 3.0,
     ),);
   }
 }

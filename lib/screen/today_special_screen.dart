@@ -1,12 +1,11 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:food/components/menu_button_widget.dart';
 import 'package:food/screen/all_items_screen.dart';
+import 'package:food/src/food_theme_data.dart';
 import 'package:food/utils/background_widget.dart';
 import 'package:food/utils/caption_text_widget.dart';
-import 'package:food/utils/display_food_item_widget.dart';
+import 'package:food/utils/food_item_horizontal_widget.dart';
 import 'package:food/utils/visible_check_out_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../test_elements.dart';
@@ -74,7 +73,10 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                         size: 30.0,
                         color: Colors.grey[700],
                       ),
-                    Text('Back',style: GoogleFonts.sacramento(fontSize: 30.0,height: 2),)
+                    Text('Back',style: FoodThemeData().foodItemTextStyle.copyWith(
+                      fontSize: 30.0,
+                      height:2,
+                    ),)
                   ],
                 ),
               ),
@@ -118,8 +120,7 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                   /*here goes the genres*/
                   beverageType(),
                   SizedBox(height: 20.0,),
-                  Text('Today\'s Special :',style: GoogleFonts.sacramento(
-                    height: 1.0,
+                  Text('Today\'s Special :',style: FoodThemeData().foodItemTextStyle.copyWith(
                     fontSize: 35.0,
                     fontWeight: FontWeight.bold,
                     color: isVeg?Colors.teal:Colors.redAccent,
@@ -135,7 +136,7 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                         controller: scrollController,
                         padding: EdgeInsets.only(top:0.0),
                         physics: BouncingScrollPhysics(),
-                        children: foodItems.map((foodItem) => DisplayFoodItemWidget(foodItem: foodItem)).toList(),
+                        children: foodItems.map((foodItem) => FoodItemHorizontalWidget(foodItem: foodItem)).toList(),
                       ),
                       onNotification: (ScrollNotification event){
                         setState(() {
@@ -192,10 +193,9 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                 vertical: 2.0,
                 horizontal: 18.0,
               ),
-              child: Text('veg',style: GoogleFonts.sacramento(
-                color: isVeg?Colors.white:Colors.green[800],
+              child: Text('veg',style: FoodThemeData().foodItemTextStyle.copyWith(
+                color:isVeg?Colors.white:Colors.green[800],
                 fontSize: 45.0,
-                height: 1.0,
               ),),
             ),
           ),
@@ -218,10 +218,9 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
                 vertical: 4.0,
                 horizontal: 16.0,
               ),
-              child: Text('non veg',style: GoogleFonts.sacramento(
+              child: Text('non veg',style: FoodThemeData().foodItemTextStyle.copyWith(
                 color: isVeg?Colors.redAccent:Colors.white,
                 fontSize: 45.0,
-                height: 1.0,
               ),),
             ),
           ),
@@ -255,9 +254,8 @@ class DrawerElementWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Text(element.name, style: GoogleFonts.sacramento(
+      child: Text(element.name, style: FoodThemeData().foodItemTextStyle.copyWith(
         fontSize: 50.0,
-        height: 1,
         color: element.color,
       ),),
     );

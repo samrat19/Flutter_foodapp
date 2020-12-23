@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/logic/model/food_item_model.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:food/src/food_theme_data.dart';
 
 import 'background_widget.dart';
 
@@ -27,10 +27,9 @@ class FoodDetailsWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(item.itemName,style: GoogleFonts.sacramento(
+                  Text(item.itemName,style: FoodThemeData().foodItemTextStyle.copyWith(
                     fontSize: 35.0,
                     fontWeight: FontWeight.bold,
-                    height: 1.0,
                   ),),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -40,9 +39,8 @@ class FoodDetailsWidget extends StatelessWidget {
                       child: Image.asset(item.imagePath),
                     ),
                   ),
-                  Text(item.foodDetails,style: GoogleFonts.sacramento(
+                  Text(item.foodDetails,style: FoodThemeData().foodItemTextStyle.copyWith(
                     fontSize: 35.0,
-                    height: 1.0,
                   ),),
                 ],
               ),
