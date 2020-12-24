@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
+import 'logic/model/drawer_element_model.dart';
 import 'logic/model/food_item_model.dart';
 import 'logic/model/food_model.dart';
 
@@ -64,6 +66,15 @@ List<FoodModel> allItems = [
     genre: 'non-veg',
     foodItems: foodItems,
   ),
+];
+
+List<DrawerElementModel> drawerItems = [
+  DrawerElementModel(name: 'Account',color: Colors.red[400]),
+  DrawerElementModel(name: 'Cart Items',color: Colors.green[400]),
+  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[700]),
+  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400]),
+  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[700]),
+  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400]),
 ];
 
 

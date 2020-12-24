@@ -4,6 +4,7 @@ import 'package:food/screen/all_items_screen.dart';
 import 'package:food/src/food_theme_data.dart';
 import 'package:food/utils/background_widget.dart';
 import 'package:food/utils/caption_text_widget.dart';
+import 'package:food/utils/drawer_element_widget.dart';
 import 'package:food/utils/food_item_horizontal_widget.dart';
 import 'package:food/utils/visible_check_out_widget.dart';
 import 'package:provider/provider.dart';
@@ -46,12 +47,20 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
             topCircleColor: Colors.yellow[700],
             bottomCircleColor: Colors.grey[300],
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 60.0,
+              left: 15.0,
+              right: 15.0,
+            ),
+            child: GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                 crossAxisSpacing: 10.0,
+                 mainAxisSpacing: 20.0,
+              ),
               children: [
-                ...drawerItems.map((item) => DrawerElementWidget(element: item),).toList(),
+                ...drawerItems.map((item) => DrawerElementWidget(element: item),).toList()
               ],
             ),
           ),
@@ -243,37 +252,3 @@ class _TodaySpecialScreenState extends State<TodaySpecialScreen> {
     );
   }
 }
-
-class DrawerElementWidget extends StatelessWidget {
-
-  final DrawerElementModel element;
-
-  const DrawerElementWidget({Key key, @required this.element}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Text(element.name, style: FoodThemeData().foodItemTextStyle.copyWith(
-        fontSize: 50.0,
-        color: element.color,
-      ),),
-    );
-  }
-}
-
-class DrawerElementModel{
-  final String name;
-  final Color color;
-
-  const DrawerElementModel({@required this.name, @required this.color});
-}
-
-List<DrawerElementModel> drawerItems = [
-  DrawerElementModel(name: 'Account',color: Colors.red[400]),
-  DrawerElementModel(name: 'Cart Items',color: Colors.green[400]),
-  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[400]),
-  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400]),
-  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[400]),
-  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400]),
-];
