@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food/screen/all_items_screen.dart';
+import 'package:food/screen/user_profile_screen.dart';
 import 'package:food/test_elements.dart';
 import 'package:provider/provider.dart';
 import 'screen/today_special_screen.dart';

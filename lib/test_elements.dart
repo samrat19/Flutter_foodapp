@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food/screen/user_profile_screen.dart';
 
 import 'logic/model/drawer_element_model.dart';
 import 'logic/model/food_item_model.dart';
@@ -69,27 +70,57 @@ List<FoodModel> allItems = [
 ];
 
 List<DrawerElementModel> drawerItems = [
-  DrawerElementModel(name: 'Account',color: Colors.red[400],alignment: Alignment.topLeft),
-  DrawerElementModel(name: 'Cart Items',color: Colors.green[400],alignment: Alignment.topRight),
-  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[700],alignment: Alignment.centerLeft),
-  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400],alignment: Alignment.centerRight),
-  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[700],alignment: Alignment.bottomLeft),
-  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400],alignment:Alignment.bottomRight),
+  DrawerElementModel(
+    name: 'Account',
+    color: Colors.red[400],
+    alignment: Alignment.topLeft,
+    child: UserProfileScreen(),
+  ),
+  DrawerElementModel(
+    name: 'Cart Items',
+    color: Colors.green[400],
+    alignment: Alignment.topRight,
+    child: UserProfileScreen(),
+  ),
+  DrawerElementModel(
+    name: 'Previous Orders',
+    color: Colors.teal[700],
+    alignment: Alignment.centerLeft,
+    child: UserProfileScreen(),
+  ),
+  DrawerElementModel(
+    name: 'Your Reviews',
+    color: Colors.redAccent[400],
+    alignment: Alignment.centerRight,
+    child: UserProfileScreen(),
+  ),
+  DrawerElementModel(
+    name: 'About Us',
+    color: Colors.tealAccent[700],
+    alignment: Alignment.bottomLeft,
+    child: UserProfileScreen(),
+  ),
+  DrawerElementModel(
+    name: 'Logout',
+    color: Colors.greenAccent[400],
+    alignment: Alignment.bottomRight,
+    child: UserProfileScreen(),
+  ),
 ];
 
+final demoText =
+    'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section';
 
-final demoText = 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section';
-
-
-class AppController extends ChangeNotifier{
+class AppController extends ChangeNotifier {
   int cart = 0;
-  addToCart(){
+
+  addToCart() {
     cart++;
     notifyListeners();
   }
-  removeFromCart(){
+
+  removeFromCart() {
     cart--;
     notifyListeners();
   }
-
 }

@@ -14,24 +14,27 @@ class DrawerElementWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, BouncyPageRoute(child: TestScreen(),alignment: element.alignment));
+        Navigator.push(context, BouncyPageRoute(child: element.child,alignment: element.alignment));
       },
-      child: Card(
-        color: Colors.transparent,
-        elevation: 10.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
+      child: Hero(
+        tag: element.name,
+        child: Card(
+          color: Colors.transparent,
+          elevation: 10.0,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
-            color: element.color.withOpacity(0.6),
           ),
-          child: Center(
-            child: Text(element.name,style: FoodThemeData().foodItemTextStyle.copyWith(
-              color: Colors.white,
-              fontSize: element.name.length>7?32.0:40.0,
-            ),),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: element.color.withOpacity(0.6),
+            ),
+            child: Center(
+              child: Text(element.name,style: FoodThemeData().foodItemTextStyle.copyWith(
+                color: Colors.white,
+                fontSize: element.name.length>7?32.0:40.0,
+              ),),
+            ),
           ),
         ),
       ),
