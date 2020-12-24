@@ -6,7 +6,7 @@ class BouncyPageRoute extends PageRouteBuilder{
 
   BouncyPageRoute({@required this.child, @required this.alignment})
       : super(
-            transitionDuration: Duration(milliseconds: 400),
+            transitionDuration: Duration(milliseconds: 300),
             transitionsBuilder: (BuildContext context,
                 Animation<double> animation,
                 Animation<double> secondAnimation,
