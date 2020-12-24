@@ -69,12 +69,12 @@ List<FoodModel> allItems = [
 ];
 
 List<DrawerElementModel> drawerItems = [
-  DrawerElementModel(name: 'Account',color: Colors.red[400]),
-  DrawerElementModel(name: 'Cart Items',color: Colors.green[400]),
-  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[700]),
-  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400]),
-  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[700]),
-  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400]),
+  DrawerElementModel(name: 'Account',color: Colors.red[400],alignment: Alignment.topLeft),
+  DrawerElementModel(name: 'Cart Items',color: Colors.green[400],alignment: Alignment.topRight),
+  DrawerElementModel(name: 'Previous Orders',color: Colors.teal[700],alignment: Alignment.centerLeft),
+  DrawerElementModel(name: 'Your Reviews',color: Colors.redAccent[400],alignment: Alignment.centerRight),
+  DrawerElementModel(name: 'About Us',color: Colors.tealAccent[700],alignment: Alignment.bottomLeft),
+  DrawerElementModel(name: 'Logout',color: Colors.greenAccent[400],alignment:Alignment.bottomRight),
 ];
 
 
